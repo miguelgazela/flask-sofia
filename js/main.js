@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-  console.log("Starting...");
-
   var now = moment();
 
   var firstWarningDom = document.querySelector('#first_warning');
@@ -119,6 +117,8 @@ $(document).ready(function() {
 
   }
 
+  // fetching a love quote for the day
+
   $.get('https://quotes.rest/qod.json?category=love', function(data) {
 
     if (data.success) {
@@ -139,6 +139,17 @@ $(document).ready(function() {
 
 });
 
+function initMap() {
+
+  // Create a map object and specify the DOM element for display.
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    scrollwheel: false,
+    zoom: 8
+  });
+
+}
 
 function inClassTime(currentTime, starts, ends) {
   return currentTime.isSameOrAfter(currentTime.clone().hour(starts).minute(0).second(0)) && currentTime.isSameOrBefore(currentTime.clone().hour(ends).minute(0).second(0));
