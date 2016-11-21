@@ -27,6 +27,43 @@ html, body {
     color: #1D1F1D;
     margin-bottom: 4px;
   }
+
+  .sidebar {
+    display: flex;
+
+    .weather-icon {
+      width: 48px;
+      height: 48px;
+      align-self: center;
+      margin: 0 auto;
+      background-size: cover;
+    }
+
+    .weather-icon.sunny-day {
+      background-image: url('../img/sunny.png');
+    }
+    .weather-icon.sun-cloudy-day {
+      background-image: url('../img/sun-cloudy.png');
+    }
+    .weather-icon.cloudy-day {
+      background-image: url('../img/cloudy.png');
+    }
+    .weather-icon.cloudy-night {
+      background-image: url('../img/cloudy-night.png');
+    }
+    .weather-icon.rainy-day {
+      background-image: url('../img/rainy.png');
+    }
+    .weather-icon.clear-night {
+      background-image: url('../img/clear-night.png');
+    }
+    .weather-icon.thunderstorm {
+      background-image: url('../img/thunderstorm.png');
+    }
+    .weather-icon.windy-day {
+      background-image: url('../img/windy.png');
+    }
+  }
 }
 
 .sidebar {
@@ -50,52 +87,12 @@ html, body {
   }
 }
 
-.header .sidebar {
-  display: flex;
-}
-
-.header .sidebar .weather-icon {
-  width: 49px;
-  height: 49px;
-  align-self: center;
-  margin: 0 auto;
-}
-
-.weather-icon.sunny-day {
-  background-image: url('../img/sunny.png');
-  background-size: cover;
-}
-.weather-icon.sun-cloudy-day {
-  background-image: url('../img/sun-cloudy.png');
-  background-size: cover;
-}
-.weather-icon.cloudy-day {
-  background-image: url('../img/cloudy.png');
-  background-size: cover;
-}
-.weather-icon.cloudy-night {
-  background-image: url('../img/cloudy-night.png');
-  background-size: cover;
-}
-.weather-icon.rainy-day {
-  background-image: url('../img/rainy.png');
-  background-size: cover;
-}
-.weather-icon.clear-night {
-  background-image: url('../img/clear-night.png');
-  background-size: cover;
-}
-.weather-icon.thunderstorm {
-  background-image: url('../img/thunderstorm.png');
-  background-size: cover;
-}
-.weather-icon.windy-day {
-  background-image: url('../img/windy.png');
-  background-size: cover;
-}
-
 .content {
   flex-grow: 1;
+}
+
+.list-group {
+  margin-bottom: 0;
 }
 
 .list-group-item {
@@ -140,6 +137,36 @@ html, body {
       align-self: center;
     }
   }
+}
+
+.map-info {
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  .content {
+    display: flex;
+
+    .trip-info-element {
+      flex-grow: 1;
+
+      span {
+        display: block;
+      }
+
+      .trip-info-element-title {
+        font-size: 11px;
+        font-weight: 500;
+        color: #BCC0BC;
+      }
+
+      .trip-info-element-value {
+        font-size: 14px;
+        font-weight: 200;
+        color: #444544;
+      }
+    }
+  }
+
 }
 
 .list-photos {
