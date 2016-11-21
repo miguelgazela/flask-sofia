@@ -1,4 +1,5 @@
-var RECENT_ACTIVITY_TIME_INTERVAL = 5; // in minutes
+
+var RECENT_ACTIVITY_TIME_INTERVAL_MIN = 15; // in minutes
 var MAP_REFRESH_RATE = 2000; // milliseconds
 
 var map = null;
@@ -14,6 +15,8 @@ $(document).ready(function() {
 });
 
 function initHeader() {
+
+  console.log("DEBUG: initializing header section");
 
   var now = moment();
 
@@ -34,17 +37,18 @@ function initHeader() {
 
   if (store.enabled) {
 
-    console.log("DEBUG: Store is enabled");
+    console.log("DEBUG: localstore enabled");
 
     var lastWeatherFetch = store.get('lastWeatherFetch');
-
     if (lastWeatherFetch) {
+
+      console.log("DEBUG: has fetched weather info before");
 
       lastWeatherFetch = moment(lastWeatherFetch);
 
       if (moment().diff(lastWeatherFetch, 'seconds') < (30 * 60)) { // less than 30 minutes ago
 
-        console.log("DEBUG: Less than 30 minutes ago");
+        console.log("DEBUG: less than 30 minutes ago, using cached data");
 
         var temp = store.get('weatherTemp');
         var weather = store.get('weather');
@@ -61,22 +65,23 @@ function initHeader() {
       }
 
     } else {
-      console.log("DEBUG: No weather has been fetched");
+      console.log("DEBUG: no weather info available");
     }
-
   } else {
-    console.log("DEBUG: Store is disabled");
+    console.log("DEBUG: localstore disabled");
   }
 
-  console.log("DEBUG: Making WeatherAPI request");
+  console.log("DEBUG: performing WeatherAPI request");
 
   $.get("/weather", function(data) {
 
-    console.log("DEBUG: Fetched weather info");
-    
+    console.log("DEBUG: finished request");
+
     var headerWeather = document.querySelector('.header-weather-description');
 
     if (data) {
+
+      console.log("DEBUG: received valid weather data");
 
       data = JSON.parse(data);
 
@@ -88,11 +93,16 @@ function initHeader() {
 
       // save weather info to local storage
       if (store.enabled) {
+
+        console.log("DEBUG: saving weather info to localstore");
+
         store.set('weatherTemp', temp);
         store.set('weather', weather);
         store.set('weatherDescription', weatherDescription);
         store.set('lastWeatherFetch', moment());
       }
+
+      console.log("DEBUG: finding correct weather icon");
 
       headerWeather.innerHTML = "" + temp + "ºc, " + weather;
 
@@ -152,13 +162,15 @@ function initHeader() {
       }
 
     } else {
-      headerWeather.innerHTML = "Não consegui ver o tempo..."
+      headerWeather.innerHTML = "No weather info available..."
     }
 
 	});
 }
 
 function initClassList() {
+
+  console.log("DEBUG: initializing class list section");
 
   var now = moment();
 
@@ -179,18 +191,7 @@ function initClassList() {
 
     case 2: // tuestday
 
-      // if (now.isSameOrAfter(now.clone().hour(6).minute(0).second(0)) && now.isSameOrBefore(now.clone().hour(08).minute(30).second(0))) {
-      //   firstWarningDom.innerHTML = "Vais ter <span>Química Biológica I (T)</span> às <span>08:30</span> no <span>Auditório 06</span>, Piso <span>0</span>";
-      // } else if (now.isSameOrAfter(now.clone().hour(8).minute(30).second(0)) && now.isSameOrBefore(now.clone().hour(10).minute(30).second(0))) {
-      //   firstWarningDom.innerHTML = "Devias estar a ter <span>Química Biologica I (T)</span> no <span>Auditório 06</span>, <span>Piso 0</span>";
-      //   secondWarningDom.innerHTML = "Tens <span>BioFísica (T)</span> às <span>10:30</span> no <span>auditório 06</span>, <span>piso 0</span>";
-      // } else if (now.isSameOrAfter(now.clone().hour(10).minute(30).second(0)) && now.isSameOrBefore(now.clone().hour(12).minute(0).second(0))) {
-      //   firstWarningDom.innerHTML = "Devias estar a ter <span>BioFísica (T)</span> no <span>Auditório 06</span>, <span>Piso 0</span>";
-      //   secondWarningDom.innerHTML = "Tens <span>Sociologia MEdica (TP)</span> às <span>12:00</span> no <span>auditório 06</span>, <span>piso 0</span>";
-      // } else if (inClassTime(now, 12, 13)) {
-      //   firstWarningDom.innerHTML = "Devias estar a ter <span>Sociologia Médica (TP)</span> no <span>Auditório 06</span>, <span>Piso 0</span>";
-      //   secondWarningDom.innerHTML = "Nâo tens mais aulas depois desta!";
-      // }
+      addTuesdayClasses();
       break;
 
     case 3: // wednesday
@@ -296,26 +297,26 @@ function addMondayClasses() {
   }
 
   addClasses(classInfo);
-
-  // if (inClassTime(now, 8, 9)) {
-  //   firstWarningDom.innerHTML = "Vais ter <span>Biologia Celular (P)</span> às <span>09:00</span> no <span>edifício 1</span>, <span>piso 1</span>, sala <span>E102</span>";
-  // } else if (inClassTime(now, 9, 11)) {
-  //   firstWarningDom.innerHTML = "Devias estar a ter <span>Biologia Celular (P)</span> no <span>edifício 1</span>, <span>piso 1</span>, sala <span>E102</span>";
-  //   secondWarningDom.innerHTML = "Tens <span>Métodos Quantitativos (T)</span> às <span>11:00</span> no edifício <span>A</span>, <span>piso 0</span>, <span>sala EA02</span>";
-  // } else if (inClassTime(now, 11, 13)) {
-  //   firstWarningDom.innerHTML = "Devias estar a ter <span>Métodos Quantitativos (T)</span> no <span>edifício A</span>, <span>piso 0</span>, <span>sala EA02</span>";
-  //   secondWarningDom.innerHTML = "Tens <span>Métodos Quantitativos (P)</span> às <span>14:00</span> no <span>edifício 3</span>, <span>piso 1</span>, <span>sala E311</span>";
-  // } else if (inClassTime(now, 14, 17)) {
-  //   firstWarningDom.innerHTML = "Devias estar a ter <span>Métodos Quantitativos (P)</span> no <span>edifício 3</span>, <span>piso 1</span>, <span>sala E311</span>";
-  //   secondWarningDom.innerHTML = "E não tens mais aulas hoje! Yeei! Não te esqueaças de me mandar uma sms <3";
-  // } else {
-  //   firstWarningDom.innerHTML = "Rejubila, não tens mais aulas hoje!";
-  //   secondWarningDom.innerHTML = "Amanhã começas às 08:30 com <span>Quimíca Biológica I (T)</span> no <span>edifício A</span>, <span>piso 0</span>, <span>auditório 06</span>";
-  // }
-
 }
 
 function addTuesdayClasses() {
+
+  var classInfo = [];
+
+  if (between(0, 0, 8, 30)) {
+    classInfo.push({className: "Química Biológica", classStarts: "08:30", classEnds: "10:30", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
+  } else if (between(8, 30, 10, 30)) {
+    classInfo.push({className: "Química Biológica", classStarts: "08:30", classEnds: "10:30", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+    classInfo.push({className: "BioFísica", classStarts: "10:30", classEnds: "12:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
+  } else if (between(10, 30, 12, 00)) {
+    classInfo.push({className: "BioFísica", classStarts: "10:30", classEnds: "12:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+    classInfo.push({className: "Sociologia Médica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "TP", timerIconHiddenClass: "hidden"});
+  } else if (between(12, 13)) {
+    classInfo.push({className: "Sociologia Médica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "TP", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+    classInfo.push({className: "Biologia Celular", classStarts: "11:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
+  } else {
+    classInfo.push({className: "Biologia Celular", classStarts: "11:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
+  }
 
 }
 
@@ -339,20 +340,10 @@ function addWeekendClasses() {
 
 function initMap() {
 
-  // Create a map object and specify the DOM element for display.
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 41.14852999340849, lng: -8.606939837344555}, // Porto!
-    scrollwheel: true,
-    zoom: 16,
-    mapTypeControl: false,
-  });
-
   Parse.initialize('Ryl6jYhQ3iK0sJuYDwQLgIzyxbMfWQZXifnj2VzPYoGETPafPeg7iCN47rcwPXIY','unused');
   Parse.serverURL = 'https://m3parseserver.herokuapp.com/parse';
 
   RideLocation = Parse.Object.extend('ride_location');
-
   var rideLocationQuery = new Parse.Query(RideLocation);
   rideLocationQuery.descending('timestamp');
 
@@ -363,33 +354,51 @@ function initMap() {
 
       if (object) {
 
-        console.log("Last saved location:");
-        console.log(object);
+        console.log("DEBUG: fetched last location event");
 
         var rideLocationMoment = moment(object.get('timestamp'));
         var now = moment();
 
         var diffSecs = now.diff(rideLocationMoment, 'seconds');
 
-        // if any location in the previous minutes
+        // if any location in the previous RECENT_ACTIVITY_TIME_INTERVAL_MIN minutes
 
-        if (diffSecs < (RECENT_ACTIVITY_TIME_INTERVAL * 60)) {
-          startMonitoringActivity();
+        if (diffSecs < (RECENT_ACTIVITY_TIME_INTERVAL_MIN * 60)) {
+
+          $('.trip-warning').addClass('hidden');
+          $('.trip-stats').removeClass('hidden');
+
+          // Create a map object and specify the DOM element for display.
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 41.14852999340849, lng: -8.606939837344555}, // Porto!
+            scrollwheel: true,
+            zoom: 16,
+            mapTypeControl: false,
+          });
+
+          watchActivity();
+          return;
+
         } else {
-          console.log("No recent activity to display...");
+          console.log("DEBUG: no active ride available");
         }
+
+      } else {
+        console.log("DEBUG: no active ride available");
       }
 
+      $('.trip-warning').removeClass('hidden');
     },
     error: function(error) {
-      console.log("Error getting last location: " + error.code + " " + error.message);
+      console.log("ERROR: fetching last location " + error.code + " [" + error.message + "]");
     }
   });
 }
 
-function startMonitoringActivity() {
+function watchActivity() {
 
-  console.log("Start monitoring activity...");
+  console.log("DEBUG: watching recent activity");
 
   var rideLocationQuery = new Parse.Query(RideLocation);
   rideLocationQuery.descending('timestamp');
@@ -399,22 +408,16 @@ function startMonitoringActivity() {
 
       if (object) {
 
-        console.log(object);
-
         if (lastSavedLocation && (lastSavedLocation.get('latitude') == object.get('latitude') && lastSavedLocation.get('longitude') == object.get('longitude'))) {
 
-          console.log("Same location as before...");
-
-          setTimeout(startMonitoringActivity, 2000);
+          console.log("DEBUG: no movement since last event");
+          setTimeout(watchActivity, 2000);
           return;
         }
 
         // should add a marker to the map and remove the previous one
 
         if (positionMarker) {
-
-          console.log("Clearing map from previous position marker...");
-
           positionMarker.setMap(null);
           positionMarker = null;
         }
@@ -428,14 +431,33 @@ function startMonitoringActivity() {
 
         map.setCenter(latLng);
 
+        // change velocity label
+
+        var speed = parseInt(object.get('speed'));
+        if (speed) {
+
+          var speedLabel = $('#trip-speed');
+
+          if (speed >= 0) {
+
+            speed = (speed * 36000.0) / 1000.0;
+            speedLabel.html('' + speed + " Km/h");
+
+          } else {
+            speedLabel.html("0 Km/h");
+          }
+        }
+
         lastSavedLocation = object;
-        setTimeout(startMonitoringActivity, 2000);
+        setTimeout(watchActivity, 2000);
       }
-
-
     },
     error: function(error) {
-      console.log("Error getting last location: " + error.code + " " + error.message);
+
+      console.log("ERROR: fetching last location " + error.code + " [" + error.message + "]");
+
+      // TODO: add backoff here after x tries
+      setTimeout(watchActivity, 2000);
     }
   });
 }
@@ -446,5 +468,14 @@ function startMonitoringActivity() {
 function between(start, end) {
 
   var now = moment();
-  return now.isSameOrAfter(now.clone().hour(start).minute(0).second(0)) && now.isSameOrBefore(now.clone().hour(end).minute(0).second(0));
+
+  console.log(arguments.length);
+
+  if (arguments.length == 2) {
+    return now.isSameOrAfter(now.clone().hour(start).minute(0).second(0)) && now.isSameOrBefore(now.clone().hour(end).minute(0).second(0));
+  } else if (arguments.length == 4) {
+    return now.isSameOrAfter(now.clone().hour(arguments[0]).minute(arguments[1]).second(0)) && now.isSameOrBefore(now.clone().hour(arguments[2]).minute(arguments[3]).second(0));
+  }
+
+
 }

@@ -142,8 +142,15 @@ html, body {
 .map-info {
   padding-top: 16px;
   padding-bottom: 16px;
+  border-bottom: 1px solid #F5F4F5;
 
-  .content {
+  .trip-warning {
+    font-size: 15px;
+    color: #1D1F1D;
+    font-weight: 300;
+  }
+
+  .trip-stats {
     display: flex;
 
     .trip-info-element {
