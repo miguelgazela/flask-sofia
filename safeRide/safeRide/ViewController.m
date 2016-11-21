@@ -55,13 +55,14 @@
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//        self.locationManager.distanceFilter = kCLDistanceFilterNone;
-        self.locationManager.distanceFilter = 10;
+        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+//        self.locationManager.distanceFilter = 5;
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-            [self.locationManager requestWhenInUseAuthorization];
+            [self.locationManager requestAlwaysAuthorization];
         }
         
+        [self.locationManager setAllowsBackgroundLocationUpdates:YES];
         [self.locationManager startUpdatingLocation];
         
     } else {
@@ -81,13 +82,13 @@
     
     CLLocation *location = [locations lastObject];
     NSDate *eventDate = location.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     
     NSLog(@"latitude %+.6f, longitude %+.6f\n",
           location.coordinate.latitude,
           location.coordinate.longitude);
     
-    PFObject *object = [PFObject objectWithClassName:@"ride_location" dictionary:@{@"latitude": [NSNumber numberWithDouble:location.coordinate.latitude], @"longitude": [NSNumber numberWithDouble:location.coordinate.longitude], @"timestamp": location.timestamp}];
+    
+    PFObject *object = [PFObject objectWithClassName:@"ride_location" dictionary:@{@"latitude": [NSNumber numberWithDouble:location.coordinate.latitude], @"longitude": [NSNumber numberWithDouble:location.coordinate.longitude], @"timestamp": location.timestamp, @"speed": [NSNumber numberWithDouble:location.speed]}];
     
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
 }

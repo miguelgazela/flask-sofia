@@ -11,6 +11,8 @@
 	<string>Doing nice stuff</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Doing nice stuff</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Doing nice stuff</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>UIBackgroundModes</key>

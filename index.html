@@ -11,34 +11,70 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <style>
         </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/main.min.css">
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
+
     <body>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <!-- <h1>Olá, Sofia!</h1> -->
-        <p id="first_warning"></p>
-        <p id="second_warning"></p>
-        <hr>
-        <p id="quote"></p>
-        <hr>
-        <div id="map">Mapa here!</div>
-      </div>
-    </div>
+      <section class="header row-container">
+        <div class="sidebar">
+          <div class="weather-icon"></div>
+        </div>
+        <div class="content">
+          <h1 class="header-title"></h1>
+          <p class="header-date"></p>
+          <p class="header-weather-description"></p>
+        </div>
+      </section>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+      <ul class="list-group list-class-items"></ul>
 
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/moments.js"></script>
-        <script src="js/main.js"></script>
+      <div id="map"></div>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVbx13WMgT_TdLh_8YqbWmLX1Yhr_WnQc&callback=initMap" async defer></script>
+    <!-- <div class="container">
+      <h1>Olá, Sofia!</h1>
+      <p id="first_warning"></p>
+      <p id="second_warning"></p>
+      <hr>
+      <p id="quote"></p>
+      <hr>
+    </div> -->
 
+    <!-- <div id="map"></div> -->
+
+
+      <script id="class-item-tmpl" type="text/x-jsrender">
+        <li class="list-group-item row-container">
+          <div class="sidebar">
+            <div class="sidebar-timer">
+              <span class="glyphicon glyphicon-time {{:timerIconHiddenClass}}" aria-hidden="true"></span>
+            <span>{{:timeLeft}}</span>
+            </div>
+          </div>
+          <div class="content row-container">
+            <div class="class-info {{:classActiveClass}}">
+              <p class="class-info-primary">{{:className}}</p>
+              <p>{{:tomorrowWarning}}</p>
+              <p>{{:classStarts}} - {{:classEnds}}</p>
+              <p>{{:classLocation}}</p>
+            </div>
+            <div class="class-state">
+              <span>{{:classType}}</span>
+            </div>
+          </div>
+        </li>
+      </script>
+
+      <script src="js/vendor/jquery-1.11.2.min.js"></script>
+      <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+      <script src="js/vendor/bootstrap.min.js"></script>
+      <script src="js/vendor/moments.min.js"></script>
+      <script src="js/vendor/jsrender.min.js"></script>
+      <script src="js/vendor/store.min.js"></script>
+      <script src="js/main.min.js"></script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVbx13WMgT_TdLh_8YqbWmLX1Yhr_WnQc&callback=initMap" async defer></script>
     </body>
 </html>
