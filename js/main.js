@@ -70,7 +70,7 @@ function initHeader() {
 
   console.log("DEBUG: Making WeatherAPI request");
 
-  $.get( "https://paginas.fe.up.pt/~ei10076/projects/lgp-temp-api/weather", function(data) {
+  $.get("https://paginas.fe.up.pt/~ei10076/projects/lgp-temp-api/weather", function(data) {
 
     console.log("DEBUG: Fetched weather info");
     console.log(JSON.parse(data));
@@ -80,7 +80,7 @@ function initHeader() {
     if (data) {
 
       data = JSON.parse(data);
-      
+
       var $weatherIcon = $('.weather-icon');
 
       var temp = data.main.temp - 273.15;
