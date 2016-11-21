@@ -70,11 +70,10 @@ function initHeader() {
 
   console.log("DEBUG: Making WeatherAPI request");
 
-  $.get("https://paginas.fe.up.pt/~ei10076/projects/lgp-temp-api/weather", function(data) {
+  $.get("/weather", function(data) {
 
     console.log("DEBUG: Fetched weather info");
-    console.log(JSON.parse(data));
-
+    
     var headerWeather = document.querySelector('.header-weather-description');
 
     if (data) {
