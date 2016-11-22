@@ -318,6 +318,7 @@ function addTuesdayClasses() {
     classInfo.push({className: "Biologia Celular", classStarts: "11:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
   }
 
+  addClasses(classInfo);
 }
 
 function addWednesdayClasses() {
