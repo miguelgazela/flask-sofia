@@ -458,7 +458,7 @@ function watchActivity() {
 
           if (speed >= 0) {
 
-            speed = (speed * 36000.0) / 1000.0;
+            speed = (speed * 3600.0) / 1000.0;
             speedLabel.html('' + speed + " Km/h");
 
           } else {
