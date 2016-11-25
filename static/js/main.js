@@ -180,9 +180,8 @@ function initClassList() {
       // falls through
     case 0: // sunday
 
-      // firstWarningDom.innerHTML = "Hoje é dia de namoro. Dá-me um beijinho rápido!";
-      // secondWarningDom.innerHTML = "Amanhã começas com <span>Biologia Celular (P)</span> às 09:00 no edifício <span>1</span>, piso <span>1</span>, sala <span>E102</span>";
-    break;
+      addWeekendClasses();
+      break;
 
     case 1: // monday
 
@@ -343,27 +342,6 @@ function addFridayClasses() {
         classInfo.push({className: "Encontro com o Miguel", classStarts: "15:00", classEnds: "03:00", classLocation: "Muitos sítios", classType: "P", timerIconHiddenClass: "hidden"});
   }
 
-  // if (inClassTime(now, 7, 9)) {
-  //   firstWarningDom.innerHTML = "Vais ter <span>Biologia Celular (P)</span> às <span>09:00</span> no <span>ed 06</span>, Piso <span>0</span>";
-  // } else if (inClassTime(now, 8, 9)) {
-  //   firstWarningDom.innerHTML = "Devias estar a ter <span>Química Biológica I (T)</span> no <span>Auditório 06</span>, <span>Piso 0</span>";
-  //   secondWarningDom.innerHTML = "Tens <span>Métodos Quantitativos (T)</span> às <span>9:00</span> no mesmo auditório. Fica onde estás!";
-  // } else if (inClassTime(now, 9, 10)) {
-  //   firstWarningDom.innerHTML = "Devias estar a ter <span>Métodos Quantitativos (T)</span> no <span>Auditório 06</span>, <span>Piso 0</span>";
-  //   secondWarningDom.innerHTML = "Tens <span>Genética Básica (T)</span> às <span>10:00</span> no mesmo auditório. Hoje não te vais mexer muito";
-  // } else if (inClassTime(now, 10, 11)) {
-  //   firstWarningDom.innerHTML = "Devias estar a ter <span>Genética Básica (T)</span> no <span>Auditório 06</span>, <span>Piso 0</span>";
-  //   secondWarningDom.innerHTML = "Tens um hora livre entre as 11 e as 12 ;)";
-  // } else if (inClassTime(now, 11, 12)) {
-  //   firstWarningDom.innerHTML = "Yeei, uma hora livre para descansares. Estuda!";
-  //   secondWarningDom.innerHTML = "Tens <span>BioFísica (P)</span> às <span>12:00</span> no <span>Auditório 6</span>, <span>piso 0</span>"
-  // } else if (inClassTime(now, 12, 13)) {
-  //   firstWarningDom.innerHTML = "Devias estar a ter <span>BioFísica (P)</span> no <span>Auditório 6</span>, <span>piso 0</span>";
-  //   secondWarningDom.innerHTML = "TGIF!";
-  // } else {
-  //   firstWarningDom.innerHTML = "Hoje é a nossa noite!";
-  // }
-
   addClasses(classInfo);
 }
 
@@ -371,7 +349,7 @@ function addWeekendClasses() {
 
   var classInfo = [];
 
-  // TODO: add code here
+  classInfo.push({className: "Biologia Celular", classStarts: "09:00", classEnds: "11:00", classLocation: "E1, P1, Sala E102", classType: "P", timerIconHiddenClass: "hidden"});
 
   addClasses(classInfo);
 }
