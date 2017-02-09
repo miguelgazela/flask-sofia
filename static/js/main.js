@@ -1,4 +1,3 @@
-
 var RECENT_ACTIVITY_TIME_INTERVAL_MIN = 15; // in minutes
 var MAP_REFRESH_RATE = 2000; // milliseconds
 
@@ -200,6 +199,7 @@ function initClassList() {
 
     case 4: // thursday
 
+      addThursdayClasses();
       // if (now.isSameOrAfter(now.clone().hour(8).minute(0).second(0)) && now.isSameOrBefore(now.clone().hour(10).minute(30).second(0))) {
       //   firstWarningDom.innerHTML = "Vais ter <span>BioFísica (T)</span> às <span>10:30</span> no <span>Auditório 06</span>, Piso <span>0</span>";
       // } else if (now.isSameOrAfter(now.clone().hour(10).minute(30).second(0)) && now.isSameOrBefore(now.clone().hour(12).minute(0).second(0))) {
@@ -302,9 +302,9 @@ function addWednesdayClasses() {
     classInfo.push({className: "Química Biológica I", classStarts: "16:00", classEnds: "18:00", classLocation: "E3, P1, Sala 12", classType: "P", timerIconHiddenClass: "hidden"});
   } else if (between(16, 18)) {
     classInfo.push({className: "Química Biológica I", classStarts: "16:00", classEnds: "18:00", classLocation: "E3, P1, Sala 12", classType: "P", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
-    classInfo.push({className: "BioFísica", classStarts: "10:30", classEnds: "12:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
+    classInfo.push({className: "Anatomia Sistemática", classStarts: "09:00", classEnds: "11:00", classLocation: "E1, P3, E01", classType: "P", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
   } else {
-    classInfo.push({className: "BioFísica", classStarts: "10:30", classEnds: "12:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
+    classInfo.push({className: "Anatomia Sistemática", classStarts: "09:00", classEnds: "11:00", classLocation: "E1, P3, E01", classType: "P", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
   }
 
   addClasses(classInfo);
@@ -314,7 +314,17 @@ function addThursdayClasses() {
 
   var classInfo = [];
 
-  // TODO: add code here
+  if (between(0, 9)) {
+    classInfo.push({className: "Anatomia Sistemática", classStarts: "09:00", classEnds: "11:00", classLocation: "E1, P3, E01", classType: "P", timerIconHiddenClass: "hidden"});
+  } else if (between(9, 11)) {
+    classInfo.push({className: "Anatomia Sistemática", classStarts: "09:00", classEnds: "11:00", classLocation: "E1, P3, E01", classType: "P", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+    classInfo.push({className: "Anatomia Sistemática", classStarts: "11:00", classEnds: "12:00", classLocation: "EA, P0, Auditório 02", classType: "T", timerIconHiddenClass: "hidden"});
+  } else if (between(11, 12)) {
+    classInfo.push({className: "Anatomia Sistemática", classStarts: "11:00", classEnds: "12:00", classLocation: "EA, P0, Auditório 02", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+    classInfo.push({className: "Fisiologia", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
+  } else if (between(12, 13)) {
+    classInfo.push({className: "Fisiologia", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+  }
 
   addClasses(classInfo);
 }
