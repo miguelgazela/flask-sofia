@@ -258,7 +258,7 @@ function addMondayClasses() {
     classInfo.push({className: "Métodos Quantitativos", classStarts: "14:00", classEnds: "17:00", classLocation: "E3, P1, Sala E311", classType: "P", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
     classInfo.push({className: "Quimíca Biológica", classStarts: "08:30", classEnds: "10:30", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Tuesday"});
   } else {
-    classInfo.push({className: "Quimíca Biológica", classStarts: "08:30", classEnds: "10:30", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Tuesday"});
+    classInfo.push({className: "Quimíca Biológica II", classStarts: "09:30", classEnds: "11:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Tuesday"});
   }
 
   addClasses(classInfo);
@@ -269,18 +269,21 @@ function addTuesdayClasses() {
   var classInfo = [];
 
   if (between(0, 0, 8, 30)) {
-    classInfo.push({className: "Química Biológica", classStarts: "08:30", classEnds: "10:30", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
-  } else if (between(8, 30, 10, 30)) {
-    classInfo.push({className: "Química Biológica", classStarts: "08:30", classEnds: "10:30", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
-    classInfo.push({className: "BioFísica", classStarts: "10:30", classEnds: "12:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
-  } else if (between(10, 30, 12, 00)) {
-    classInfo.push({className: "BioFísica", classStarts: "10:30", classEnds: "12:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
-    classInfo.push({className: "Sociologia Médica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "TP", timerIconHiddenClass: "hidden"});
+    classInfo.push({className: "Química Biológica II", classStarts: "09:30", classEnds: "11:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
+  } else if (between(8, 30, 11, 00)) {
+    classInfo.push({className: "Química Biológica II", classStarts: "09:30", classEnds: "11:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+    classInfo.push({className: "Anatomia Sistemática", classStarts: "11:00", classEnds: "12:00", classLocation: "EA, P0, Auditório 02", classType: "T", timerIconHiddenClass: "hidden"});
+  } else if (between(11, 12)) {
+    classInfo.push({className: "Anatomia Sistemática", classStarts: "11:00", classEnds: "12:00", classLocation: "EA, P0, Auditório 02", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+    classInfo.push({className: "História da Medicina", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 02", classType: "T", timerIconHiddenClass: "hidden"});
   } else if (between(12, 13)) {
-    classInfo.push({className: "Sociologia Médica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "TP", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
-    classInfo.push({className: "Biologia Celular", classStarts: "11:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
+    classInfo.push({className: "História da Medicina", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 02", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+    classInfo.push({className: "Fisiologia", classStarts: "14:00", classEnds: "16:00", classLocation: "E2, P1, E204", classType: "P", timerIconHiddenClass: "hidden"});
+  } else if (between(14, 16)) {
+    classInfo.push({className: "Fisiologia", classStarts: "14:00", classEnds: "16:00", classLocation: "E2, P1, E204", classType: "P", timerIconHiddenClass: "hidden", classActiveClass: "class-active"})
+    classInfo.push({className: "Química Biológica II", classStarts: "08:30", classEnds: "10:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
   } else {
-    classInfo.push({className: "Biologia Celular", classStarts: "11:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
+    classInfo.push({className: "Química Biológica II", classStarts: "08:30", classEnds: "10:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", tomorrowWarning: "Tomorrow, Wednesday"});
   }
 
   addClasses(classInfo);
@@ -333,24 +336,24 @@ function addFridayClasses() {
 
   var classInfo = [];
 
-  if (between(0, 8)) {
-    classInfo.push({className: "Química Biológica I", classStarts: "08:00", classEnds: "09:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
-  } else if (between(8, 9)) {
-    classInfo.push({className: "Química Biológica I", classStarts: "08:00", classEnds: "09:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
-    classInfo.push({className: "Métodos Quantitativos", classStarts: "09:00", classEnds: "10:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
-  } else if (between(9, 10)) {
-    classInfo.push({className: "Métodos Quantitativos", classStarts: "09:00", classEnds: "10:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
-    classInfo.push({className: "Genética Básica", classStarts: "10:00", classEnds: "11:00", classLocation: "EA, P0, Auditório 01", classType: "T", timerIconHiddenClass: "hidden"});
-  } else if (between(10, 11)) {
-    classInfo.push({className: "Genética Básica", classStarts: "10:00", classEnds: "11:00", classLocation: "EA, P0, Auditório 01", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
-    classInfo.push({className: "BioFísica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 01", classType: "P", timerIconHiddenClass: "hidden"});
-  } else if (between(11, 12)) {
-    classInfo.push({className: "BioFísica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 01", classType: "P", timerIconHiddenClass: "hidden"});
-  } else if (between(12, 13)) {
-    classInfo.push({className: "BioFísica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 01", classType: "P", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
-  } else {
-        classInfo.push({className: "Encontro com o Miguel", classStarts: "15:00", classEnds: "03:00", classLocation: "Muitos sítios", classType: "P", timerIconHiddenClass: "hidden"});
-  }
+  // if (between(0, 8)) {
+  //   classInfo.push({className: "Química Biológica I", classStarts: "08:00", classEnds: "09:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
+  // } else if (between(8, 9)) {
+  //   classInfo.push({className: "Química Biológica I", classStarts: "08:00", classEnds: "09:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+  //   classInfo.push({className: "Métodos Quantitativos", classStarts: "09:00", classEnds: "10:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden"});
+  // } else if (between(9, 10)) {
+  //   classInfo.push({className: "Métodos Quantitativos", classStarts: "09:00", classEnds: "10:00", classLocation: "EA, P0, Auditório 06", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+  //   classInfo.push({className: "Genética Básica", classStarts: "10:00", classEnds: "11:00", classLocation: "EA, P0, Auditório 01", classType: "T", timerIconHiddenClass: "hidden"});
+  // } else if (between(10, 11)) {
+  //   classInfo.push({className: "Genética Básica", classStarts: "10:00", classEnds: "11:00", classLocation: "EA, P0, Auditório 01", classType: "T", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+  //   classInfo.push({className: "BioFísica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 01", classType: "P", timerIconHiddenClass: "hidden"});
+  // } else if (between(11, 12)) {
+  //   classInfo.push({className: "BioFísica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 01", classType: "P", timerIconHiddenClass: "hidden"});
+  // } else if (between(12, 13)) {
+  //   classInfo.push({className: "BioFísica", classStarts: "12:00", classEnds: "13:00", classLocation: "EA, P0, Auditório 01", classType: "P", timerIconHiddenClass: "hidden", classActiveClass: "class-active"});
+  // } else {
+  //       classInfo.push({className: "Encontro com o Miguel", classStarts: "15:00", classEnds: "03:00", classLocation: "Muitos sítios", classType: "P", timerIconHiddenClass: "hidden"});
+  // }
 
   addClasses(classInfo);
 }
